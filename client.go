@@ -3,7 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
@@ -50,7 +50,7 @@ func apiCall(mode string, inUrl string, data url.Values, token string) ([]byte, 
 		return nil, ret
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Println("er:", err)
 		ret.Err = err
